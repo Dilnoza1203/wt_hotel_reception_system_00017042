@@ -1,0 +1,60 @@
+include ../head.pug
+body
+    header
+        h1.app-title Hotel Reception System
+    main
+        .form-container
+            h2.title #{mode}
+            .guest-field
+                label(for="name" class="form-label") Name to register
+                input(type="text" class="form-control" id="name" name="name" required)
+            .guest-field
+                label(for="phone" class="form-label") Contact phone number
+                input(type="tel" class="form-control" id="phone" name="phone" required)
+            .guest-field
+                label(for="quantity" class="form-label") Guests quantity
+                input(type="number" class="form-control" id="quantity" name="quantity" min="1" max="10" required)
+            .guest-field
+                label(for="stay" class="form-label") Number of days to stay
+                input(type="number" class="form-control" id="stay" name="stay" min="1" max="10" required)
+            .form-field
+                label(for="datetime" class="form-label") Check-in date and time
+                input(type="datetime-local" class="form-control" id="datetime" name="datetime" required)
+            button(type="submit" class="btn btn-add" onclick="submitForm()") #{mode === 'Update' ? 'Update' : 'Add'}
+            button(type="submit" class="btn btn-cancel" onclick="window.location.href='/'") Cancel
+    footer
+        p.wt-description This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service
+script.
+    //- update page
+    if ("#{mode}" === "Update") {
+        const eventData = !{JSON.stringify(eventData || {})}.guest;
+        document.getElementById('name').value = eventData.name || '';
+        document.getElementById('phone').value = eventData.phone || '';
+        document.getElementById('quantity').value = eventData.quantity || '';
+        document.getElementById('stay').value = eventData.stay || '';
+        document.getElementById('datetime').value = eventData.datetime || '';
+    }
+    //- add page
+    function submitForm() {
+        const eventData = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            quantity: document.getElementById('quantity').value,
+            stay: document.getElementById('stay').value,
+            datetime: document.getElementById('datetime').value,
+        };
+
+        const url = "#{mode}" === "Update" ? `/api/guest/${!{JSON.stringify(eventData || {})}.id}` : '/api/guest';
+        const method = "#{mode}" === "Update" ? 'put' : 'post';
+
+        axios[method](url, eventData).then(response => {
+            alert('Success!');
+            location.href = '/'
+        })
+        .catch(error => {
+            if(error.response)
+                alert(JSON.stringify(error.response.data.errors))
+            else
+                alert(error)
+        });
+    }

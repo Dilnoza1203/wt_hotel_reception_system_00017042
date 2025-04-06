@@ -1,1 +1,62 @@
-p some content
+include ../head.pug
+body
+    header
+        h1.app-title Hotel Reception System
+    main
+        .container
+            h2.title List of registered guests
+            a.btn-add(href='/add', role='button') Add
+            table
+                thead
+                    tr
+                        th ID
+                        th Name
+                        th Contact Phone
+                        th Guests Quantity
+                        th Stay Duration
+                        th Check-in Date
+                        th Actions
+                tbody
+    footer
+        p.wt-description This web application was created to fulfill Web Technology module’s requirements and does not represent an actual company or service
+script.
+    document.addEventListener('DOMContentLoaded', function() {
+        axios.get('/api/guest/').then(function(response) {
+            const guests = response.data;
+            const tableBody = document.querySelector('table tbody');
+            guests.forEach(g => {
+                const row = document.createElement('tr');
+                const guest = g.guest
+                row.innerHTML = `
+                    <td>${g.id}</td>
+                    <td>${guest.name}</td>
+                    <td>${guest.phone}</td>
+                    <td>${guest.quantity}</td>
+                    <td>${guest.stay}</td>
+                    <td>${guest.datetime}</td>
+                    <td>
+                        <button class="btn btn-edit" data-id="${g.id}" onclick="window.location.href='/update/${g.id}'">Edit</button>
+                        <button class="btn btn-delete" data-id="${g.id}">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+
+        // Functionality of deleting button
+        document.addEventListener('click', function(event) {
+            if (event.target && event.target.classList.contains('btn-delete')) {
+                const guestId = event.target.getAttribute('data-id');
+                axios.delete(`/api/guest/${guestId}`).then(function(response) {
+                    alert('Deleted successfully', response);
+                    location.href = '/'
+                })
+                .catch(function(error) {
+                    alert('Error in deleting: ' + error);
+                });
+            }
+        });
+    });
