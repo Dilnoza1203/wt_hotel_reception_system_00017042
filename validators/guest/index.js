@@ -11,10 +11,10 @@ const addGuestValidation = () => {
             .matches(/^\+998\d{9}$/).withMessage('Invalid phone number, it must start with +998'),
         body('quantity')
             .notEmpty().withMessage('Guests quantity cannot be 0 or empty')
-            .isInt({ min: 0, max: 10 }).withMessage('Guests quantity must be between 1 and 10 whole numbers'),
+            .isInt({ min: 1, max: 10 }).withMessage('Guests quantity must be between 1 and 10 whole numbers'),
         body('stay')
             .notEmpty().withMessage('Number of days to stay cannot be 0 or empty')
-            .isInt({ min: 0, max: 10 }).withMessage('Number of days to stay must be between 1 and 10 whole numbers'),
+            .isInt({ min: 1, max: 10 }).withMessage('Number of days to stay must be between 1 and 10 whole numbers'),
         body('date')
             .notEmpty().withMessage('Date cannot be empty')
             .matches(/^\d{4}-\d{2}-\d{2}/)
@@ -49,10 +49,10 @@ const updateGuestValidation = () => {
             .matches(/^\+998\d{9}$/).withMessage('Invalid phone number, it must start with +998'),
         body('quantity')
             .notEmpty().withMessage('Guests quantity cannot be 0 or empty')
-            .isInt({ min: 0, max: 10 }).withMessage('Guests quantity must be between 1 and 10 whole numbers'),
+            .isInt({ min: 1, max: 10 }).withMessage('Guests quantity must be between 1 and 10 whole numbers'),
         body('stay')
             .notEmpty().withMessage('Number of days to stay cannot be 0 or empty')
-            .isInt({ min: 0, max: 10 }).withMessage('Number of days to stay must be between 1 and 10 whole numbers'),
+            .isInt({ min: 1, max: 10 }).withMessage('Number of days to stay must be between 1 and 10 whole numbers'),
         body('date')
             .notEmpty().withMessage('Date cannot be empty')
             .matches(/^\d{4}-\d{2}-\d{2}/)
