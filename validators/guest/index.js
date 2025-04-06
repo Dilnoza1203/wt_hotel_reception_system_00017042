@@ -15,10 +15,10 @@ const addGuestValidation = () => {
         body('stay')
             .notEmpty().withMessage('Number of days to stay cannot be 0 or empty')
             .isInt({ min: 0, max: 10 }).withMessage('Number of days to stay must be between 1 and 10 whole numbers'),
-        body('datetime')
-            .notEmpty().withMessage('Date time cannot be empty')
-            .matches(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/)
-            .withMessage('Invalid date and time format. Please use "YYYY-MM-DD HH:mm" format'),
+        body('date')
+            .notEmpty().withMessage('Date cannot be empty')
+            .matches(/^\d{4}-\d{2}-\d{2}/)
+            .withMessage('Invalid date format. Please use "YYYY-MM-DD" format'),
     ];
 };
 
@@ -53,10 +53,10 @@ const updateGuestValidation = () => {
         body('stay')
             .notEmpty().withMessage('Number of days to stay cannot be 0 or empty')
             .isInt({ min: 0, max: 10 }).withMessage('Number of days to stay must be between 1 and 10 whole numbers'),
-        body('datetime')
-            .notEmpty().withMessage('Date time cannot be empty')
-            .matches(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/)
-            .withMessage('Invalid date and time format. Please use "YYYY-MM-DD HH:mm" format'),
+        body('date')
+            .notEmpty().withMessage('Date cannot be empty')
+            .matches(/^\d{4}-\d{2}-\d{2}/)
+            .withMessage('Invalid date format. Please use "YYYY-MM-DD" format'),
     ];
 };
 
