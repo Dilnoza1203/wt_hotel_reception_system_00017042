@@ -5,7 +5,7 @@ body
     main
         .container
             h2.title List of registered guests
-            a.btn-add(href='/add', role='button') Add
+            button.btn.btn-add(onclick="window.location.href='/add'") Add
             table
                 thead
                     tr
@@ -35,7 +35,7 @@ script.
                     <td>${guest.stay}</td>
                     <td>${guest.datetime}</td>
                     <td>
-                        <button class="btn btn-edit" data-id="${g.id}" onclick="window.location.href='/update/${g.id}'">Edit</button>
+                        <button class="btn btn-update" data-id="${g.id}" onclick="window.location.href='/update/${g.id}'">Edit</button>
                         <button class="btn btn-delete" data-id="${g.id}">Delete</button>
                     </td>
                 `;

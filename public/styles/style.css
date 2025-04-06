@@ -1,0 +1,90 @@
+/* main styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 1;
+}
+header, main, footer {
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+}
+
+/* text styles */
+.app-title,
+.wt-description {
+    text-align: center;
+}
+.title {
+    margin: 0 15px 15px 0;
+    display: inline-block;
+}
+
+/* button styles */
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 25px;
+    background: gray;
+    color: white;
+    cursor: pointer;
+}
+.btn-delete {
+    background: red;
+    padding: 10px 15px;
+}
+.btn-update {
+    background: blue;
+    padding: 10px 15px;
+}
+.btn-add {
+    background: green;
+    margin-right: 15px;
+}
+
+/* home page styles */
+.container {
+    padding: 0 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+tr {
+    display: grid;
+    grid-template-columns: 1fr 3fr 3fr 2fr 2fr 3fr 3fr;
+}
+td, th {
+    border: 1px solid black;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+td:last-child {
+    justify-content: space-evenly;
+}
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* add and update page styles */
+.form-container {
+    padding: 0 20px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+.guest-field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 20px;
+}
+.form-control {
+    padding: 10px;
+}
